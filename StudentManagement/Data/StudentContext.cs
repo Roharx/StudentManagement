@@ -30,6 +30,12 @@ namespace StudentManagement.Data
                 .HasOne(c => c.Instructor)
                 .WithMany(i => i.Courses)
                 .HasForeignKey(c => c.InstructorId);
-        }
+
+            // One-to-One Relationship: A Department has one DepartmentHead (Instructor)
+            modelBuilder.Entity<Department>() //Added in: feat/new-department-relations-ef
+                .HasOne(d => d.DepartmentHead)
+                .WithOne()
+                .HasForeignKey<Department>(d => d.DepartmentHeadId);
+            }
     }
 }
