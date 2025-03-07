@@ -25,6 +25,11 @@ namespace StudentManagement.Data
                 .HasOne(e => e.Course)
                 .WithMany(c => c.Enrollments)
                 .HasForeignKey(e => e.CourseId);
+
+            modelBuilder.Entity<Course>()  //Added in: feat/new-instructor-and-relation-ef
+                .HasOne(c => c.Instructor)
+                .WithMany(i => i.Courses)
+                .HasForeignKey(c => c.InstructorId);
         }
     }
 }
